@@ -1,0 +1,5 @@
+# Compiled source && Artifact
+build
+out
+.gradle
+/wildfly

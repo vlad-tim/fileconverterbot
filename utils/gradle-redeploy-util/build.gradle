@@ -1,0 +1,31 @@
+apply plugin: 'com.github.nikit.cpp.wildfly.deploy'
+
+description = 'Utility to redeploy backend with gradle'
+
+buildscript {
+    ext.kotlin_version = '1.0.1'
+
+    repositories {
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+        maven {
+            url 'https://dl.bintray.com/nikit007/mvn-repo/'
+        }
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.github.nikit.cpp:wildflyDeployPlugin:1.0.8'
+    }
+}
+deployConfig {
+    jbossHome = null // if null than will used system environment JBOSS_HOME or WILDFLY_HOME
+    deployFile = 'deploy-file' // list of files to deploy
+    boxes = [
+            'Local': [
+                    wildfly: new helpers.Server(
+                            username: System.getenv(wildflyLogin),
+                            password: System.getenv(wildflyPassword),
+                            hostname: System.getenv(wildflyHost))
+            ]
+    ]
+}

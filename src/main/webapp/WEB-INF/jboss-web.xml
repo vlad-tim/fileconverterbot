@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>/fcbot</context-root>
+</jboss-web>
